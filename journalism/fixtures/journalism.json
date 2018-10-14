@@ -1,0 +1,23 @@
+[
+    {
+        "model": "journalism.publication",
+        "pk": 1,
+        "fields": {
+            "name": "McGill International Review",
+            "affiliation": "McGill University",
+            "city": "Montr\u00e9al, QC"
+        }
+    },
+    {
+        "model": "journalism.article",
+        "pk": 1,
+        "fields": {
+            "title": "Protesting the Powerful: Art & Resistance in Turkey",
+            "content": "Turkey\u2019s history is no stranger to public clashes between the government and its people over socio-political issues. In 2013 mass demonstrations took place after police took violent measures to end peaceful protests against the building of a shopping centre over Gezi Park in Istanbul\u2019s Taksim neighbourhood. The popular rainbow steps of Istanbul located in F\u0131nd\u0131kl\u0131 and Cihangir were painted by a retired forestry engineer, which were subsequently painted over in grey by municipal workers. His efforts were not in vain, as the residents adored the colourful staircase so much that they came together in a community effort to repaint them. This specific art project is well-known of those in Istanbul, but those who have been to the city know that it is far from the only one. Murals decorate the walls in areas such as Be\u015fikta\u015f and Kadik\u00f6y, many of them created with a political message in mind. One example is a mural located in Moda that celebrates Nobel Peace Prize winner Malala Yusufzai.",
+            "image": "images/black-and-white-computer-device-331684.jpg",
+            "published_date": "2017-10-01T00:00:00Z",
+            "views": 0,
+            "publication": 1
+        }
+    }
+]

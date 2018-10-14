@@ -1,3 +1,5 @@
 db.sqlite
 media
 .vscode
+python3
+node_modules
