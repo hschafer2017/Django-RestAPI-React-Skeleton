@@ -3,15 +3,36 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from .serializers import ArticleSerializer
-from .models import Article
+from .serializers import (PublicationSerializer,
+                          ArticleSerializer)
+from .models import Publication, Article
 
 
 @api_view(['GET'])
-def api_root(request, format=None):
+def publication_api_root(request, format=None):
     return Response({
-        'article': reverse('article-list', request=request, format=format)
+        'publication': reverse('publication-list',
+                               request=request,
+                               format=format)
+        })
+
+@api_view(['GET'])
+def article_api_root(request, format=None):
+    return Response({
+        'article': reverse('article-list',
+                           request=request,
+                           format=format)
     })
+
+
+class PublicationViewSet(viewsets.ModelViewSet):
+    serializer_class = PublicationSerializer
+    queryset = Publication.objects.all()
+
+    def get_object(self):
+        obj = get_object_or_404(Publication.objects.all(),
+                                pk=self.kwargs['pk'])
+        return obj
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -19,5 +40,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
 
     def get_object(self):
-        obj = get_object_or_404(Article.objects.all(), pk=self.kwargs['pk'])
+        obj = get_object_or_404(Article.objects.all(),
+                                pk=self.kwargs['pk'])
         return obj
+
+# Need to add an extra id for the article to link to publication?

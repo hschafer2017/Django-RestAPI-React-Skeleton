@@ -1,11 +1,15 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Article, Publication
 
 
-class ArticleSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="article-detail")
-
+class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('url', 'id', 'title',
-                  'content', 'image', 'published_date')
+        fields = ('title', 'content', 'image', 'published_date', 'publication')
+
+class PublicationSerializer(serializers.ModelSerializer):
+    articles = ArticleSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Publication
+        fields = ('name', 'affiliation', 'city', 'articles')
