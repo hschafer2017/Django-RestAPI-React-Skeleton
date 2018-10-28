@@ -6,42 +6,48 @@ from rest_framework.reverse import reverse
 from .serializers import (PublicationSerializer,
                           ArticleSerializer)
 from .models import Publication, Article
+from rest_framework import generics
 
 
-@api_view(['GET'])
-def publication_api_root(request, format=None):
-    return Response({
-        'publication': reverse('publication-list',
-                               request=request,
-                               format=format)
-        })
-
-@api_view(['GET'])
-def article_api_root(request, format=None):
-    return Response({
-        'article': reverse('article-list',
-                           request=request,
-                           format=format)
-    })
-
-
-class PublicationViewSet(viewsets.ModelViewSet):
-    serializer_class = PublicationSerializer
+class PublicationListCreate(generics.ListCreateAPIView):
     queryset = Publication.objects.all()
-
-    def get_object(self):
-        obj = get_object_or_404(Publication.objects.all(),
-                                pk=self.kwargs['pk'])
-        return obj
+    serializer_class = PublicationSerializer
 
 
-class ArticleViewSet(viewsets.ModelViewSet):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
+# @api_view(['GET'])
+# def publication_api_root(request, format=None):
+#     return Response({
+#         'publication': reverse('publication-list',
+#                                request=request,
+#                                format=format)
+#         })
 
-    def get_object(self):
-        obj = get_object_or_404(Article.objects.all(),
-                                pk=self.kwargs['pk'])
-        return obj
+# @api_view(['GET'])
+# def article_api_root(request, format=None):
+#     return Response({
+#         'article': reverse('article-list',
+#                            request=request,
+#                            format=format)
+#     })
+
+
+# class PublicationViewSet(viewsets.ModelViewSet):
+#     serializer_class = PublicationSerializer
+#     queryset = Publication.objects.all()
+
+#     def get_object(self):
+#         obj = get_object_or_404(Publication.objects.all(),
+#                                 pk=self.kwargs['pk'])
+#         return obj
+
+
+# class ArticleViewSet(viewsets.ModelViewSet):
+#     serializer_class = ArticleSerializer
+#     queryset = Article.objects.all()
+
+#     def get_object(self):
+#         obj = get_object_or_404(Article.objects.all(),
+#                                 pk=self.kwargs['pk'])
+#         return obj
 
 # Need to add an extra id for the article to link to publication?
