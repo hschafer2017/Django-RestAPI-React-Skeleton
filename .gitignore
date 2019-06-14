@@ -1,5 +1,11 @@
+# Database
 db.sqlite
+
+# App Media Files
 media
+
+# VSCode
 .vscode
 python3
 node_modules
+.DS_Store
